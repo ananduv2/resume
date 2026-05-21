@@ -439,13 +439,194 @@
       }
     }
 
+    @keyframes producerReplicaSlotMobile {
+      0%, 18%, 100% {
+        width: 0;
+        opacity: 0;
+      }
+      30%, 70% {
+        width: 42px;
+        opacity: 1;
+      }
+      82% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes consumerReplicaSlotMobile {
+      0%, 14%, 100% {
+        width: 0;
+        opacity: 0;
+      }
+      24%, 72% {
+        width: 36px;
+        opacity: 1;
+      }
+      84% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
     @media (max-width: 768px) {
       .flow-line {
-        display: none;
+        display: block;
+        opacity: 0.82;
+      }
+
+      .arch-wrap {
+        overflow-x: hidden;
+        padding-bottom: 0;
       }
 
       .arch-board {
-        min-width: 920px;
+        min-width: 0;
+        width: 100%;
+        padding: 0.75rem;
+      }
+
+      .arch-region {
+        min-height: 620px;
+        padding: 2.2rem 0.45rem 0.75rem;
+      }
+
+      .arch-node {
+        width: 72px;
+      }
+
+      .arch-node.internet {
+        width: 82px;
+      }
+
+      .arch-chip {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.25rem;
+      }
+
+      .arch-chip svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .arch-asg {
+        min-width: 150px;
+        height: 118px;
+        padding: 1.55rem 0.75rem 0.7rem;
+      }
+
+      .arch-consumer-asg {
+        min-width: 176px;
+        height: 116px;
+        padding: 1.55rem 0.75rem 0.7rem;
+      }
+
+      .arch-chip.asg-core,
+      .arch-chip.consumer-core {
+        width: 48px;
+        height: 48px;
+      }
+
+      .arch-asg-node.replica-slot,
+      .arch-consumer-node.replica-slot {
+        display: flex;
+      }
+
+      .arch-asg-node.replica-slot {
+        animation-name: producerReplicaSlotMobile;
+      }
+
+      .arch-consumer-node.replica-slot {
+        animation-name: consumerReplicaSlotMobile;
+      }
+
+      .arch-chip.asg-replica,
+      .arch-chip.consumer-replica {
+        width: 42px;
+        height: 42px;
+      }
+
+      .flow-left-top,
+      .flow-left-down,
+      .flow-left-end,
+      .flow-right-top,
+      .flow-right-down,
+      .flow-right-end {
+        display: block;
+      }
+
+      .flow-main-1,
+      .flow-main-2,
+      .flow-main-3,
+      .flow-main-4,
+      .flow-main-5,
+      .flow-bottom-left,
+      .flow-bottom-right {
+        display: block;
+      }
+
+      .flow-left-top {
+        left: 13% !important;
+        top: 52% !important;
+        width: 37% !important;
+      }
+
+      .flow-left-down {
+        left: 13% !important;
+        top: 52% !important;
+        height: 37% !important;
+      }
+
+      .flow-left-end {
+        left: 13% !important;
+        top: 89% !important;
+        width: 27% !important;
+      }
+
+      .flow-right-top {
+        left: 50% !important;
+        top: 52% !important;
+        width: 37% !important;
+      }
+
+      .flow-right-down {
+        left: 87% !important;
+        top: 52% !important;
+        height: 37% !important;
+      }
+
+      .flow-right-end {
+        left: 60% !important;
+        top: 89% !important;
+        width: 27% !important;
+      }
+
+      .flow-bottom-left,
+      .flow-bottom-right {
+        display: block;
+        top: 89% !important;
+      }
+
+      .flow-bottom-left {
+        left: 42% !important;
+        width: 8% !important;
+      }
+
+      .flow-bottom-right {
+        left: 50% !important;
+        width: 8% !important;
+      }
+
+      .arch-node-label,
+      .arch-asg-service-label,
+      .arch-consumer-gpu-label {
+        font-size: 0.66rem;
+      }
+
+      .arch-asg-title,
+      .arch-consumer-asg-title {
+        font-size: 0.56rem;
       }
     }
   </style>
@@ -926,19 +1107,19 @@
               <p class="arch-node-label">EFS</p>
             </div>
 
-            <div class="flow-line flow-v" style="left: 50%; top: 12%; height: 7dvh;"></div>
-            <div class="flow-line flow-v" style="left: 50%; top: 29%; height: 4%;"></div>
-            <div class="flow-line flow-v" style="left: 50%; top: 50%; height: 2.5%;"></div>
-            <div class="flow-line flow-v" style="left: 50%; top: 63.5%; height: 1.5%;"></div>
-            <div class="flow-line flow-v" style="left: 50%; top: 83%; height: 6%;"></div>
-            <div class="flow-line flow-h" style="left: 30%; top: 52%; width: 20%;"></div>
-            <div class="flow-line flow-v" style="left: 30%; top: 52%; height: 37%;"></div>
-            <div class="flow-line flow-h" style="left: 30%; top: 89%; width: 8%;"></div>
-            <div class="flow-line flow-h" style="left: 50%; top: 52%; width: 20%;"></div>
-            <div class="flow-line flow-v" style="left: 70%; top: 52%; height: 37%;"></div>
-            <div class="flow-line flow-h" style="left: 63%; top: 89%; width: 7.2%;"></div>
-            <div class="flow-line flow-h" style="left: 42%; top: 89%; width: 8%;"></div>
-            <div class="flow-line flow-h" style="left: 50%; top: 89%; width: 8%;"></div>
+            <div class="flow-line flow-v flow-main-1" style="left: 50%; top: 12%; height: 7dvh;"></div>
+            <div class="flow-line flow-v flow-main-2" style="left: 50%; top: 29%; height: 4%;"></div>
+            <div class="flow-line flow-v flow-main-3" style="left: 50%; top: 50%; height: 2.5%;"></div>
+            <div class="flow-line flow-v flow-main-4" style="left: 50%; top: 63.5%; height: 1.5%;"></div>
+            <div class="flow-line flow-v flow-main-5" style="left: 50%; top: 83%; height: 6%;"></div>
+            <div class="flow-line flow-h flow-left-top" style="left: 30%; top: 52%; width: 20%;"></div>
+            <div class="flow-line flow-v flow-left-down" style="left: 30%; top: 52%; height: 37%;"></div>
+            <div class="flow-line flow-h flow-left-end" style="left: 30%; top: 89%; width: 8%;"></div>
+            <div class="flow-line flow-h flow-right-top" style="left: 50%; top: 52%; width: 20%;"></div>
+            <div class="flow-line flow-v flow-right-down" style="left: 70%; top: 52%; height: 37%;"></div>
+            <div class="flow-line flow-h flow-right-end" style="left: 63%; top: 89%; width: 7.2%;"></div>
+            <div class="flow-line flow-h flow-bottom-left" style="left: 42%; top: 89%; width: 8%;"></div>
+            <div class="flow-line flow-h flow-bottom-right" style="left: 50%; top: 89%; width: 8%;"></div>
             <!-- <div class="flow-line flow-v" style="left: 40%; top: 86%; height: 3%;"></div> -->
             <!-- <div class="flow-line flow-v" style="left: 60%; top: 86%; height: 3%;"></div> -->
           </div>
