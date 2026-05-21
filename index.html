@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anandu B.S. | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at 10% 10%, rgba(249, 115, 22, 0.08), transparent 35%),
+                  radial-gradient(circle at 90% 20%, rgba(239, 68, 68, 0.1), transparent 40%),
+                  #000;
+    }
+
+    .glass-card {
+      backdrop-filter: blur(8px);
+      background: rgba(24, 24, 27, 0.7);
+    }
+
+    .arch-wrap {
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+    }
+
+    .arch-board {
+      min-width: 1040px;
+      background: linear-gradient(180deg, rgba(24, 24, 27, 0.92), rgba(9, 9, 11, 0.96));
+      border-radius: 1rem;
+      border: 1px solid rgba(249, 115, 22, 0.22);
+      color: #e4e4e7;
+      padding: 1rem;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .arch-board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.35));
+    }
+
+    .arch-region {
+      border: 1px dashed rgba(251, 146, 60, 0.65);
+      border-radius: 0.6rem;
+      padding: 3.1rem 0.8rem 0.95rem;
+      position: relative;
+      min-height: 780px;
+      background: linear-gradient(180deg, rgba(39, 39, 42, 0.35), rgba(24, 24, 27, 0.65));
+    }
+
+    .arch-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+      width: 86px;
+    }
+
+    .arch-node.internet {
+      width: 96px;
+      z-index: 3;
+    }
+
+    .arch-asg {
+      position: absolute;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%);
+      width: auto;
+      min-width: 180px;
+      height: 142px;
+      border: 1px dashed rgba(251, 146, 60, 0.55);
+      border-radius: 0.9rem;
+      background: linear-gradient(180deg, rgba(251, 146, 60, 0.08), rgba(39, 39, 42, 0.3));
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.55rem;
+      padding: 1.8rem 1.1rem 0.9rem;
+    }
+
+    .arch-consumer-asg {
+      position: absolute;
+      left: 50%;
+      top: 74%;
+      transform: translate(-50%, -50%);
+      width: auto;
+      min-width: 220px;
+      height: 140px;
+      border: 1px dashed rgba(34, 211, 238, 0.45);
+      border-radius: 0.9rem;
+      background: linear-gradient(180deg, rgba(34, 211, 238, 0.07), rgba(39, 39, 42, 0.2));
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1.9rem 1.1rem 0.9rem;
+      overflow: hidden;
+    }
+
+    .arch-consumer-asg-title {
+      position: absolute;
+      top: 0.35rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #67e8f9;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .arch-consumer-nodes {
+      position: relative;
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      padding: 1rem 0 0.55rem;
+    }
+
+    .arch-consumer-nodes::before,
+    .arch-consumer-nodes::after {
+      content: none;
+    }
+
+    .arch-consumer-node {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      flex: 0 0 auto;
+    }
+
+    .arch-consumer-node.replica-slot {
+      width: 0;
+      overflow: hidden;
+      opacity: 0;
+      animation: consumerReplicaSlot 6.4s ease-in-out infinite;
+    }
+
+    .arch-asg-title {
+      position: absolute;
+      top: 0.3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fdba74;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .arch-asg-service-label {
+      margin-top: 0.1rem;
+      font-size: 0.76rem;
+      color: #d4d4d8;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+      white-space: nowrap;
+    }
+
+    .arch-asg-nodes {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+    }
+
+    .arch-asg-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      flex: 0 0 auto;
+    }
+
+    .arch-asg-node.replica-slot {
+      width: 0;
+      overflow: hidden;
+      opacity: 0;
+      animation: producerReplicaSlot 5.2s ease-in-out infinite;
+    }
+
+    .arch-chip.asg-replica {
+      width: 52px;
+      height: 52px;
+      border-color: rgba(251, 146, 60, 0.45);
+      color: rgba(253, 186, 116, 0.8);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.38);
+      opacity: 0;
+      transform: scale(0.85);
+      animation: replicaScale 5.2s ease-in-out infinite;
+    }
+
+    .arch-asg-node.right .arch-chip.asg-replica {
+      animation-delay: 1.4s;
+    }
+
+    .arch-asg-node.right.replica-slot {
+      animation-delay: 1.4s;
+    }
+
+    .arch-chip.asg-core {
+      width: 58px;
+      height: 58px;
+    }
+
+    .arch-chip.consumer-core {
+      width: 58px;
+      height: 58px;
+    }
+
+    .arch-chip.consumer-replica {
+      width: 52px;
+      height: 52px;
+      opacity: 0;
+      transform: scale(0.84);
+      animation: consumerReplicaScale 6.4s ease-in-out infinite;
+    }
+
+    .arch-consumer-replica.replica-a { animation-delay: 0.6s; }
+    .arch-consumer-replica.replica-b { animation-delay: 1.4s; }
+    .arch-consumer-replica.replica-c { animation-delay: 3.2s; }
+    .arch-consumer-replica.replica-d { animation-delay: 4.1s; }
+    .arch-consumer-replica.replica-a .arch-chip { animation-delay: 0.6s; }
+    .arch-consumer-replica.replica-b .arch-chip { animation-delay: 1.4s; }
+    .arch-consumer-replica.replica-c .arch-chip { animation-delay: 3.2s; }
+    .arch-consumer-replica.replica-d .arch-chip { animation-delay: 4.1s; }
+
+    .arch-consumer-gpu-label {
+      position: relative;
+      color: #a5f3fc;
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      text-transform: uppercase;
+      z-index: 4;
+      white-space: nowrap;
+      margin-top: 0.2rem;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    }
+
+    .arch-chip {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 0.32rem;
+      border-radius: 0.85rem;
+      border: 1px solid rgba(251, 146, 60, 0.65);
+      background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.18), rgba(39, 39, 42, 0.96));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fb923c;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(249, 115, 22, 0.1);
+    }
+
+    .arch-chip svg {
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .arch-chip.svc-ingress,
+    .arch-chip.svc-web {
+      color: #fdba74;
+      border-color: rgba(251, 146, 60, 0.7);
+    }
+
+    .arch-chip.svc-internet {
+      color: #fcd34d;
+      border-color: rgba(250, 204, 21, 0.72);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(250, 204, 21, 0.18);
+    }
+
+    .arch-chip.svc-cache {
+      color: #c4b5fd;
+      border-color: rgba(167, 139, 250, 0.7);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(167, 139, 250, 0.18);
+    }
+
+    .arch-chip.svc-gpu {
+      color: #67e8f9;
+      border-color: rgba(34, 211, 238, 0.7);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(34, 211, 238, 0.16);
+    }
+
+    .arch-chip.svc-db {
+      color: #93c5fd;
+      border-color: rgba(96, 165, 250, 0.7);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(96, 165, 250, 0.18);
+    }
+
+    .arch-chip.svc-fs {
+      color: #86efac;
+      border-color: rgba(74, 222, 128, 0.72);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(74, 222, 128, 0.2);
+    }
+
+    .arch-node-label {
+      margin-top: 0.1rem;
+      font-size: 0.76rem;
+      color: #d4d4d8;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+      white-space: nowrap;
+      position: relative;
+      z-index: 4;
+    }
+
+    .flow-line {
+      position: absolute;
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.16), rgba(245, 158, 11, 0.82), rgba(245, 158, 11, 0.16));
+      border-radius: 999px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .flow-line::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 28%;
+      background: linear-gradient(90deg, transparent, rgba(255, 237, 213, 0.95), transparent);
+      animation: dataPulse 2.2s linear infinite;
+    }
+
+    .flow-h {
+      height: 2px;
+    }
+
+    .flow-v {
+      width: 2px;
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.16), rgba(245, 158, 11, 0.82), rgba(245, 158, 11, 0.16));
+    }
+
+    .flow-v::after {
+      width: 100%;
+      height: 28%;
+      background: linear-gradient(180deg, transparent, rgba(255, 237, 213, 0.95), transparent);
+      animation: dataPulseVertical 2.2s linear infinite;
+    }
+
+    @keyframes dataPulse {
+      from { transform: translateX(-140%); }
+      to { transform: translateX(360%); }
+    }
+
+    @keyframes dataPulseVertical {
+      from { transform: translateY(-140%); }
+      to { transform: translateY(360%); }
+    }
+
+    @keyframes replicaScale {
+      0%, 18%, 100% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.82);
+      }
+      30%, 70% {
+        opacity: 0.92;
+        transform: translateY(0) scale(1);
+      }
+      82% {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.82);
+      }
+    }
+
+    @keyframes consumerReplicaScale {
+      0%, 14%, 100% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.8);
+      }
+      24%, 72% {
+        opacity: 0.96;
+        transform: translateY(0) scale(1);
+      }
+      84% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.8);
+      }
+    }
+
+    @keyframes producerReplicaSlot {
+      0%, 18%, 100% {
+        width: 0;
+        opacity: 0;
+      }
+      30%, 70% {
+        width: 66px;
+        opacity: 1;
+      }
+      82% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes consumerReplicaSlot {
+      0%, 14%, 100% {
+        width: 0;
+        opacity: 0;
+      }
+      24%, 72% {
+        width: 58px;
+        opacity: 1;
+      }
+      84% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .flow-line {
+        display: none;
+      }
+
+      .arch-board {
+        min-width: 920px;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-white antialiased">
+  <main>
+    <section class="relative overflow-hidden border-b border-zinc-800" id="top">
+      <div class="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-red-500/10"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-24">
+        <div class="grid lg:grid-cols-2 gap-10 md:gap-12 items-center">
+          <div>
+            <div class="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-2 text-sm text-orange-300 mb-6">
+              DevOps Engineer • Cloud Architect • AWS &amp; DevOps Trainer
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-6">
+              Anandu
+              <span class="block text-orange-400">B.S.</span>
+            </h1>
+
+            <p class="text-zinc-400 text-base md:text-lg leading-relaxed max-w-2xl mb-8">
+              DevOps and cloud engineer delivering production infrastructure, observability,
+              backend services, and automation for AI media platforms.
+              I work primarily with AWS and GCP, build scalable monitoring systems,
+              run GPU-backed workloads, and deliver resilient deployments with custom autoscaling
+              for long-running GenAI pipelines.
+              I also lead AWS and DevOps workshops for students and corporate teams.
+            </p>
+
+            <div class="flex flex-wrap gap-3 sm:gap-4">
+              <a href="#contact" class="w-full sm:w-auto text-center border border-zinc-700 hover:border-zinc-500 transition px-6 py-3 rounded-2xl font-semibold">
+                Contact Me
+              </a>
+
+              <a href="Anandu_BS_Resume.pdf" download id="download-resume-btn" class="w-full sm:w-auto text-center border border-orange-500/60 text-orange-300 hover:bg-orange-500/10 hover:border-orange-400 transition px-6 py-3 rounded-2xl font-semibold">
+                Download Resume
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="glass-card border border-zinc-800 rounded-3xl p-5 sm:p-8 shadow-2xl">
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+
+              <div class="text-xs sm:text-sm text-zinc-300 space-y-5 break-words">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <p class="text-zinc-500">Name</p>
+                    <p class="font-medium">Anandu B.S.</p>
+                  </div>
+                  <div>
+                    <p class="text-zinc-500">Location</p>
+                    <p class="font-medium">Bangalore, Karnataka</p>
+                  </div>
+                  <div>
+                    <p class="text-zinc-500">Role</p>
+                    <p class="font-medium">DevOps Engineer | Cloud Architect</p>
+                  </div>
+                  <div>
+                    <p class="text-zinc-500">Experience</p>
+                    <p class="font-medium" id="experience-line">Calculating...</p>
+                  </div>
+                  <div class="md:col-span-2">
+                    <p class="text-zinc-500">Experience &amp; Training</p>
+                    <p class="font-medium"><span id="experience-trainer-line">Calculating...</span> | AWS and DevOps trainer for student and corporate teams.</p>
+                  </div>
+                <div>
+                  <p class="text-zinc-500 mb-1">Current Company</p>
+                  <p class="font-medium">Neural Garage Pvt Ltd</p>
+                  <p class="text-zinc-400">DevOps Engineer | Dec 2022 - Present</p>
+                </div>
+
+                <div>
+                  <p class="text-zinc-500 mb-1">Previous Roles</p>
+                  <ul class="space-y-2">
+                    <li>
+                      <p class="font-medium text-orange-300">Software Engineer</p>
+                      <p>Gemini Solutions Pvt Ltd</p>
+                      <p class="text-zinc-400">Sep 2021 - Nov 2022</p>
+                    </li>
+                    <li>
+                      <p class="font-medium text-orange-300">Associate Software Engineer</p>
+                      <p>Teqstories Solutions Pvt Ltd</p>
+                      <p class="text-zinc-400">Apr 2021 - Sep 2021</p>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <p class="text-zinc-500 mb-1">Core Stack</p>
+                  <p>AWS, GCP, Docker, Docker Compose, FastAPI, Flask, Prometheus, Grafana, Loki, Jenkins, Boto3</p>
+                </div>
+
+                <div>
+                  <p class="text-zinc-500 mb-1">Certifications</p>
+                  <p>AWS Certified Cloud Practitioner, AWS Cloud Technical Essentials</p>
+                </div>
+
+                <div>
+                  <p class="text-zinc-500 mb-1">Key Project</p>
+                  <p>VisualDub - AI dubbing and lip-sync platform</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-zinc-800 bg-zinc-950/50" id="profiles">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+        <div class="mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Profiles &amp; Credentials</h2>
+          <p class="text-zinc-400 text-lg">
+            Professional background, certifications, and core strengths.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
+          <article class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-8">
+            <h3 class="text-2xl font-bold mb-4">Social Profiles</h3>
+            <p class="text-zinc-400 leading-relaxed mb-4">
+              Connect with me on GitHub and LinkedIn for engineering work and professional updates.
+            </p>
+            <div class="flex items-center gap-4">
+              <a class="inline-flex items-center justify-center w-12 h-12 rounded-xl border border-zinc-700 text-zinc-200 hover:text-orange-300 hover:border-orange-400/60 transition" href="https://github.com/ananduv2" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" title="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.596 2 12.267c0 4.537 2.865 8.387 6.839 9.746.5.097.683-.221.683-.49 0-.24-.009-.876-.014-1.719-2.782.615-3.369-1.38-3.369-1.38-.455-1.183-1.11-1.499-1.11-1.499-.908-.637.069-.625.069-.625 1.004.073 1.532 1.056 1.532 1.056.892 1.566 2.341 1.114 2.91.852.092-.665.349-1.114.636-1.37-2.221-.26-4.555-1.14-4.555-5.076 0-1.121.389-2.038 1.029-2.756-.103-.262-.446-1.316.098-2.744 0 0 .84-.276 2.75 1.053A9.32 9.32 0 0 1 12 6.85a9.32 9.32 0 0 1 2.504.347c1.909-1.329 2.748-1.053 2.748-1.053.546 1.428.203 2.482.1 2.744.64.718 1.027 1.635 1.027 2.756 0 3.946-2.337 4.813-4.566 5.068.359.317.678.942.678 1.899 0 1.37-.013 2.475-.013 2.812 0 .271.18.591.688.489A10.294 10.294 0 0 0 22 12.267C22 6.596 17.523 2 12 2Z"/>
+                </svg>
+              </a>
+
+              <a class="inline-flex items-center justify-center w-12 h-12 rounded-xl border border-zinc-700 text-zinc-200 hover:text-orange-300 hover:border-orange-400/60 transition" href="https://www.linkedin.com/in/anandu-bs/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.024-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.94v5.666H9.351V9h3.414v1.561h.046c.476-.9 1.637-1.85 3.369-1.85 3.601 0 4.267 2.369 4.267 5.455v6.286ZM5.337 7.433a2.063 2.063 0 1 1 0-4.126 2.063 2.063 0 0 1 0 4.126ZM7.114 20.452H3.558V9h3.556v11.452Z"/>
+                </svg>
+              </a>
+            </div>
+
+            <p class="text-zinc-500 text-sm mt-4">ananduv2 on GitHub and anandu-bs on LinkedIn</p>
+            <p class="text-zinc-500 text-sm mt-2">Promotion milestones are reflected in the timeline based on role progression.</p>
+          </article>
+
+          <article class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-8 lg:col-span-2">
+            <h3 class="text-2xl font-bold mb-2">Experience Timeline</h3>
+            <p class="text-zinc-400">Career progression across engineering and DevOps roles.</p>
+
+            <div class="mt-5 mb-6 rounded-2xl border border-zinc-800 bg-black/20 p-4">
+              <p class="text-zinc-100 font-semibold text-lg">NeuralGarage</p>
+              <p class="text-zinc-400">Full-time · 3 yrs 6 mos</p>
+              <p class="text-zinc-500">Bengaluru, Karnataka, India</p>
+            </div>
+
+            <div class="mt-6 border-l border-orange-500/40 pl-6 sm:pl-8 space-y-7">
+              <div class="relative">
+                <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-orange-400"></span>
+                <p class="text-xs uppercase tracking-wider text-zinc-500 mb-1">Total Experience</p>
+                <p class="font-medium text-zinc-200" id="experience-summary">Calculating experience...</p>
+              </div>
+
+              <div class="relative">
+                <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-orange-300"></span>
+                <p class="text-xs uppercase tracking-wider text-zinc-500 mb-1">Apr 2025 - Present</p>
+                <p class="font-semibold text-zinc-100">DevOps Engineer - II</p>
+                <p class="text-zinc-400">Neural Garage Pvt Ltd</p>
+                <p class="text-zinc-500 text-sm">Full-time</p>
+              </div>
+
+              <div class="relative">
+                <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-orange-300"></span>
+                <p class="text-xs uppercase tracking-wider text-zinc-500 mb-1">Dec 2022 - Apr 2025</p>
+                <p class="font-semibold text-zinc-100">DevOps Engineer</p>
+                <p class="text-zinc-400">Neural Garage Pvt Ltd</p>
+                <p class="text-zinc-500 text-sm">On-site</p>
+              </div>
+
+              <div class="relative">
+                <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-orange-300"></span>
+                <p class="text-xs uppercase tracking-wider text-zinc-500 mb-1">Sep 2021 - Nov 2022</p>
+                <p class="font-semibold text-zinc-100">Software Engineer</p>
+                <p class="text-zinc-400">Gemini Solutions Pvt Ltd</p>
+              </div>
+
+              <div class="relative">
+                <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-3 h-3 rounded-full bg-orange-300"></span>
+                <p class="text-xs uppercase tracking-wider text-zinc-500 mb-1">Apr 2021 - Sep 2021</p>
+                <p class="font-semibold text-zinc-100">Associate System Engineer Trainee</p>
+                <p class="text-zinc-400">Teqstories Solutions Pvt Ltd</p>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-zinc-800">
+              <h4 class="text-lg font-semibold text-zinc-100 mb-3">Promotion Highlights</h4>
+              <ul class="space-y-2 text-zinc-300 text-sm">
+                <li><span class="text-orange-300 font-medium">2021:</span> Started as Associate System Engineer Trainee.</li>
+                <li><span class="text-orange-300 font-medium">2021:</span> Progressed to Software Engineer role.</li>
+                <li><span class="text-orange-300 font-medium">2022:</span> Moved into DevOps Engineer role at Neural Garage.</li>
+                <li><span class="text-orange-300 font-medium">2025:</span> Promoted to DevOps Engineer - II.</li>
+              </ul>
+            </div>
+
+          </article>
+
+          <article class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-8 lg:col-span-3">
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div>
+                <h3 class="text-2xl font-bold mb-4">Education &amp; Qualifications</h3>
+                <div class="border-l border-orange-500/40 pl-4 sm:pl-5 space-y-5">
+                  <div class="relative">
+                    <span class="absolute -left-[23px] top-1.5 w-2.5 h-2.5 rounded-full bg-orange-300"></span>
+                    <p class="text-xs uppercase tracking-wider text-zinc-500">2021/06</p>
+                    <p class="text-zinc-100 font-medium">Master of Computer Application</p>
+                    <p class="text-zinc-400">APJ Abdul Kalam Technological University</p>
+                    <p class="text-zinc-500 text-sm">8.33 CGPA</p>
+                  </div>
+
+                  <div class="relative">
+                    <span class="absolute -left-[23px] top-1.5 w-2.5 h-2.5 rounded-full bg-orange-300"></span>
+                    <p class="text-xs uppercase tracking-wider text-zinc-500">2019/06</p>
+                    <p class="text-zinc-100 font-medium">Bachelor of Computer Applications</p>
+                    <p class="text-zinc-400">Kerala University</p>
+                    <p class="text-zinc-500 text-sm">7.28 CGPA</p>
+                  </div>
+
+                  <div class="relative">
+                    <span class="absolute -left-[23px] top-1.5 w-2.5 h-2.5 rounded-full bg-orange-300"></span>
+                    <p class="text-xs uppercase tracking-wider text-zinc-500">2016/04</p>
+                    <p class="text-zinc-100 font-medium">Diploma in Web Designing</p>
+                    <p class="text-zinc-400">NORKA ROOTS</p>
+                    <p class="text-zinc-500 text-sm">B Grade</p>
+                  </div>
+
+                  <div class="relative">
+                    <span class="absolute -left-[23px] top-1.5 w-2.5 h-2.5 rounded-full bg-orange-300"></span>
+                    <p class="text-xs uppercase tracking-wider text-zinc-500">2013/04</p>
+                    <p class="text-zinc-100 font-medium">12th CBSE</p>
+                    <p class="text-zinc-400">Sree Narayana Public School, Kollam</p>
+                    <p class="text-zinc-500 text-sm">60%</p>
+                  </div>
+
+                  <div class="relative">
+                    <span class="absolute -left-[23px] top-1.5 w-2.5 h-2.5 rounded-full bg-orange-300"></span>
+                    <p class="text-xs uppercase tracking-wider text-zinc-500">2011/04</p>
+                    <p class="text-zinc-100 font-medium">10th CBSE</p>
+                    <p class="text-zinc-400">Sree Narayana Public School, Kollam</p>
+                    <p class="text-zinc-500 text-sm">8.8 CGPA</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="text-2xl font-bold text-zinc-100 mb-4">Certifications</h4>
+                <ul class="text-zinc-300 leading-relaxed space-y-3">
+                  <li class="flex items-start gap-2"><span class="text-orange-300 mt-1">●</span><span>AWS Certified Cloud Practitioner.</span></li>
+                  <li class="flex items-start gap-2"><span class="text-orange-300 mt-1">●</span><span><a class="text-orange-300 hover:text-orange-200 transition" href="https://www.coursera.org/account/accomplishments/verify/DBXFQ6LRVK8Q" target="_blank" rel="noopener noreferrer">AWS Cloud Technical Essentials</a>.</span></li>
+                  <li class="flex items-start gap-2"><span class="text-orange-300 mt-1">●</span><span><a class="text-orange-300 hover:text-orange-200 transition" href="https://www.coursera.org/account/accomplishments/verify/P4CD53APCG28" target="_blank" rel="noopener noreferrer">Programming for Everybody (Getting Started with Python)</a>.</span></li>
+                  <li class="flex items-start gap-2"><span class="text-orange-300 mt-1">●</span><span><a class="text-orange-300 hover:text-orange-200 transition" href="https://www.coursera.org/account/accomplishments/verify/XYSTBY2EFUB2" target="_blank" rel="noopener noreferrer">AWS S3 Basics</a>.</span></li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20" id="skills">
+      <div class="mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Core Technologies</h2>
+        <p class="text-zinc-400 text-lg">
+          Technologies I use to build and operate production platforms.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">AWS</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Docker</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Docker Compose</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Prometheus</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Grafana</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Loki</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">FastAPI</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Flask</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">ReactJS</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Python</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">DevOps</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Jenkins</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">HashiCorp Vault</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Redis</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">SonarQube</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Selenium</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">Boto3</div>
+        <div class="bg-zinc-900 border border-zinc-800 hover:border-orange-500/50 transition rounded-2xl p-4 text-center font-medium">ELK Stack</div>
+      </div>
+    </section>
+
+    <section class="border-y border-zinc-800 bg-zinc-950/50" id="projects">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+        <div class="mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Highlighted Projects</h2>
+          <p class="text-zinc-400 text-lg">
+            Selected work focused on scale, reliability, and automation.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+          <article class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-8 hover:border-orange-500/40 transition">
+            <h3 class="text-2xl font-bold mb-4">VisualDub</h3>
+            <p class="text-zinc-400 leading-relaxed">
+              AI dubbing platform delivered as SaaS and API offerings to reduce visual mismatch in dubbed content.
+              I own end-to-end deployment, CI/CD, and production monitoring automation.
+            </p>
+          </article>
+
+          <article class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-8 hover:border-orange-500/40 transition">
+            <h3 class="text-2xl font-bold mb-4">Beacon.Io</h3>
+            <p class="text-zinc-400 leading-relaxed">
+              Unified data and analytics platform for capital market risk workflows.
+              I handled platform reliability, batch pipeline debugging, and production user support.
+            </p>
+          </article>
+
+          <article class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-8 hover:border-orange-500/40 transition">
+            <h3 class="text-2xl font-bold mb-4">Automation &amp; DevOps Tooling</h3>
+            <p class="text-zinc-400 leading-relaxed">
+              Built infrastructure automation using AWS SSM, Boto3, Docker Compose, Jenkins pipelines,
+              and internal monitoring tooling.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20" id="architecture">
+      <!-- <div class="mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3">Production Architecture Flow</h2>
+        <p class="text-zinc-400 text-lg">Animated request and processing flow across ingress, autoscaling web tiers, data stores, and custom GPU workers.</p>
+      </div> -->
+
+      <div class="arch-wrap">
+        <div class="arch-board">
+          <div class="arch-region">
+            <div class="arch-node internet" style="left: 50%; top: 8%;">
+              <div class="arch-chip svc-internet" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="8"></circle>
+                  <path d="M4 12h16M12 4a12 12 0 0 1 0 16M12 4a12 12 0 0 0 0 16"></path>
+                </svg>
+              </div>
+              <p class="arch-node-label">Internet</p>
+            </div>
+
+            <div class="arch-node" style="left: 50%; top: 24%;">
+              <div class="arch-chip svc-ingress" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                  <path d="M7 9h.01M11 9h.01M15 9h.01M7 13h10"></path>
+                </svg>
+              </div>
+              <p class="arch-node-label">nginx</p>
+            </div>
+
+            <div class="arch-asg">
+              <p class="arch-asg-title">Auto Scaling Group</p>
+              <div class="arch-asg-nodes">
+                <div class="arch-asg-node left replica-slot">
+                  <div class="arch-chip svc-web asg-replica" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                      <path d="M8 9h8M8 13h8M8 17h4"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="arch-asg-node">
+                  <div class="arch-chip svc-web asg-core" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                      <path d="M8 9h8M8 13h8M8 17h4"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="arch-asg-node right replica-slot">
+                  <div class="arch-chip svc-web asg-replica" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                      <path d="M8 9h8M8 13h8M8 17h4"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <p class="arch-asg-service-label">Producer</p>
+            </div>
+
+            <div class="arch-consumer-asg">
+              <p class="arch-consumer-asg-title">Custom Auto Scaling Group</p>
+              <div class="arch-consumer-nodes">
+                <div class="arch-consumer-node arch-consumer-replica replica-a replica-slot">
+                  <div class="arch-chip svc-gpu consumer-replica" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="7" y="7" width="10" height="10" rx="1.6"></rect>
+                      <path d="M4 9h3M4 12h3M4 15h3M17 9h3M17 12h3M17 15h3M9 4v3M12 4v3M15 4v3M9 17v3M12 17v3M15 17v3"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="arch-consumer-node arch-consumer-replica replica-b replica-slot">
+                  <div class="arch-chip svc-gpu consumer-replica" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="7" y="7" width="10" height="10" rx="1.6"></rect>
+                      <path d="M4 9h3M4 12h3M4 15h3M17 9h3M17 12h3M17 15h3M9 4v3M12 4v3M15 4v3M9 17v3M12 17v3M15 17v3"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="arch-consumer-node">
+                  <div class="arch-chip svc-gpu consumer-core" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="7" y="7" width="10" height="10" rx="1.6"></rect>
+                      <path d="M4 9h3M4 12h3M4 15h3M17 9h3M17 12h3M17 15h3M9 4v3M12 4v3M15 4v3M9 17v3M12 17v3M15 17v3"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="arch-consumer-node arch-consumer-replica replica-c replica-slot">
+                  <div class="arch-chip svc-gpu consumer-replica" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="7" y="7" width="10" height="10" rx="1.6"></rect>
+                      <path d="M4 9h3M4 12h3M4 15h3M17 9h3M17 12h3M17 15h3M9 4v3M12 4v3M15 4v3M9 17v3M12 17v3M15 17v3"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="arch-consumer-node arch-consumer-replica replica-d replica-slot">
+                  <div class="arch-chip svc-gpu consumer-replica" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="7" y="7" width="10" height="10" rx="1.6"></rect>
+                      <path d="M4 9h3M4 12h3M4 15h3M17 9h3M17 12h3M17 15h3M9 4v3M12 4v3M15 4v3M9 17v3M12 17v3M15 17v3"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <p class="arch-consumer-gpu-label">Consumer GPU Workers</p>
+            </div>
+
+            <div class="arch-node" style="left: 50%; top: 58%;">
+              <div class="arch-chip svc-cache" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <ellipse cx="12" cy="6.8" rx="6.5" ry="2.6"></ellipse>
+                  <path d="M5.5 6.8v6.9c0 1.5 2.9 2.6 6.5 2.6s6.5-1.1 6.5-2.6V6.8"></path>
+                  <path d="M5.5 10.2c0 1.5 2.9 2.6 6.5 2.6s6.5-1.1 6.5-2.6"></path>
+                </svg>
+              </div>
+              <p class="arch-node-label">Redis</p>
+            </div>
+
+            <div class="arch-node" style="left: 40%; top: 90%;">
+              <div class="arch-chip svc-db" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <ellipse cx="12" cy="6" rx="6.5" ry="2.5"></ellipse>
+                  <path d="M5.5 6v4.5c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5V6"></path>
+                  <path d="M5.5 10.5V15c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5v-4.5"></path>
+                </svg>
+              </div>
+              <p class="arch-node-label">MySQL</p>
+            </div>
+
+            <div class="arch-node" style="left: 60%; top: 90%;">
+              <div class="arch-chip svc-fs" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H10l2 2h6.5A2.5 2.5 0 0 1 21 10.5v6A2.5 2.5 0 0 1 18.5 19h-13A2.5 2.5 0 0 1 3 16.5z"></path>
+                </svg>
+              </div>
+              <p class="arch-node-label">EFS</p>
+            </div>
+
+            <div class="flow-line flow-v" style="left: 50%; top: 12%; height: 7dvh;"></div>
+            <div class="flow-line flow-v" style="left: 50%; top: 29%; height: 4%;"></div>
+            <div class="flow-line flow-v" style="left: 50%; top: 50%; height: 2.5%;"></div>
+            <div class="flow-line flow-v" style="left: 50%; top: 63.5%; height: 1.5%;"></div>
+            <div class="flow-line flow-v" style="left: 50%; top: 83%; height: 6%;"></div>
+            <div class="flow-line flow-h" style="left: 30%; top: 52%; width: 20%;"></div>
+            <div class="flow-line flow-v" style="left: 30%; top: 52%; height: 37%;"></div>
+            <div class="flow-line flow-h" style="left: 30%; top: 89%; width: 8%;"></div>
+            <div class="flow-line flow-h" style="left: 50%; top: 52%; width: 20%;"></div>
+            <div class="flow-line flow-v" style="left: 70%; top: 52%; height: 37%;"></div>
+            <div class="flow-line flow-h" style="left: 63%; top: 89%; width: 7.2%;"></div>
+            <div class="flow-line flow-h" style="left: 42%; top: 89%; width: 8%;"></div>
+            <div class="flow-line flow-h" style="left: 50%; top: 89%; width: 8%;"></div>
+            <!-- <div class="flow-line flow-v" style="left: 40%; top: 86%; height: 3%;"></div> -->
+            <!-- <div class="flow-line flow-v" style="left: 60%; top: 86%; height: 3%;"></div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20" id="experience">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-8">What I Build</h2>
+
+          <div class="space-y-6">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
+              <h3 class="text-xl font-semibold mb-2 text-orange-400">
+                Cloud Infrastructure
+              </h3>
+              <p class="text-zinc-400">
+                Automate AWS infrastructure, EC2 orchestration, secure delivery pipelines,
+                SSM operations, GPU cluster provisioning, and custom autoscaling for long-running GenAI workloads.
+              </p>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
+              <h3 class="text-xl font-semibold mb-2 text-orange-400">
+                Observability Systems
+              </h3>
+              <p class="text-zinc-400">
+                Build Grafana dashboards, Loki log pipelines,
+                Prometheus exporters, and real-time alerting for production operations.
+              </p>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
+              <h3 class="text-xl font-semibold mb-2 text-orange-400">
+                AI &amp; Media Platforms
+              </h3>
+              <p class="text-zinc-400">
+                Deliver multilingual voice translation, lip-sync systems,
+                AI video workflows, and media generation pipelines.
+              </p>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
+              <h3 class="text-xl font-semibold mb-2 text-orange-400">
+                GenAI Infrastructure
+              </h3>
+              <p class="text-zinc-400">
+                Design GPU clusters and implement custom autoscaling strategies
+                for long-running GenAI inference and media processing workloads.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="bg-gradient-to-br from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-3xl p-6 sm:p-8 h-full">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Quick Stats</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
+                <div class="text-4xl font-black text-orange-400 mb-2" id="experience-stat-value">--</div>
+                <div class="text-zinc-400">Years Experience</div>
+              </div>
+
+              <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
+                <div class="text-4xl font-black text-orange-400 mb-2">20+</div>
+                <div class="text-zinc-400">Production Services</div>
+              </div>
+
+              <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
+                <div class="text-4xl font-black text-orange-400 mb-2">AWS</div>
+                <div class="text-zinc-400">Cloud Focused</div>
+              </div>
+
+              <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
+                <div class="text-4xl font-black text-orange-400 mb-2">24/7</div>
+                <div class="text-zinc-400">GenAI GPU Operations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-zinc-800" id="contact">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 py-14 md:py-20">
+        <div class="mb-10 text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-3">Contact Me</h2>
+          <p class="text-zinc-400">Get in touch for projects, consulting, workshops, or training engagements.</p>
+        </div>
+
+        <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-5">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden">
+            <label>Do not fill this field if you are human: <input name="bot-field" /></label>
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-sm text-zinc-400 mb-2">Your Name</label>
+              <input id="name" name="name" type="text" required class="w-full rounded-xl bg-black/40 border border-zinc-700 px-4 py-3 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-orange-400" placeholder="Enter your name" />
+            </div>
+            <div>
+              <label for="email" class="block text-sm text-zinc-400 mb-2">Your Email</label>
+              <input id="email" name="email" type="email" required class="w-full rounded-xl bg-black/40 border border-zinc-700 px-4 py-3 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-orange-400" placeholder="Enter your email" />
+            </div>
+          </div>
+
+          <div>
+            <label for="subject" class="block text-sm text-zinc-400 mb-2">Subject</label>
+            <input id="subject" name="subject" type="text" required class="w-full rounded-xl bg-black/40 border border-zinc-700 px-4 py-3 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-orange-400" placeholder="Subject of your message" />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm text-zinc-400 mb-2">Message</label>
+            <textarea id="message" name="message" rows="6" required class="w-full rounded-xl bg-black/40 border border-zinc-700 px-4 py-3 text-zinc-100 placeholder:text-zinc-500 focus:outline-none focus:border-orange-400" placeholder="Write your message"></textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+            <button type="submit" class="w-full sm:w-auto bg-orange-500 hover:bg-orange-400 transition px-6 py-3 rounded-2xl font-semibold text-black">
+              Send Message
+            </button>
+            <p id="contact-status" class="text-sm text-zinc-400"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-zinc-800 py-10" id="footer">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div>
+        <h3 class="font-bold text-xl">Anandu B.S.</h3>
+        <p class="text-zinc-500">Cloud • DevOps • AI Systems • Monitoring</p>
+      </div>
+
+      <div class="text-zinc-400 text-sm text-center md:text-right space-y-1">
+        <p class="inline-flex items-center gap-2">
+          <span class="text-orange-300" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.768.966-.941 1.164-.174.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.058-.174-.297-.019-.458.13-.606.134-.133.298-.348.446-.521.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.571-.01c-.198 0-.521.074-.793.372s-1.041 1.017-1.041 2.479 1.066 2.875 1.214 3.074c.149.198 2.099 3.2 5.077 4.487.709.306 1.262.489 1.693.626.711.226 1.359.194 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347Z"/>
+              <path d="M20.52 3.449A11.91 11.91 0 0 0 12.042.001C5.495.001.17 5.326.169 11.873a11.8 11.8 0 0 0 1.602 5.979L0 24l6.305-1.654a11.87 11.87 0 0 0 5.736 1.465h.005c6.547 0 11.872-5.325 11.873-11.873a11.82 11.82 0 0 0-3.399-8.489Zm-8.474 18.368h-.004a9.86 9.86 0 0 1-5.026-1.379l-.36-.214-3.741.982 1-3.648-.235-.375a9.86 9.86 0 0 1-1.517-5.31c.001-5.447 4.433-9.879 9.884-9.879a9.84 9.84 0 0 1 6.987 2.894 9.83 9.83 0 0 1 2.893 6.99c-.002 5.447-4.434 9.879-9.881 9.879Z"/>
+            </svg>
+          </span>
+          Phone / WhatsApp:
+          <a class="text-orange-400 hover:text-orange-300 transition" href="tel:+918136901971">+91 8136901971</a>
+        </p>
+        <p class="inline-flex items-center gap-2">
+          <span class="text-orange-300" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor">
+              <path d="M6.62 10.79a15.054 15.054 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.11.37 2.31.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.3 21 3 13.7 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.27.2 2.47.57 3.58a1 1 0 0 1-.24 1.01l-2.21 2.2Z"/>
+            </svg>
+          </span>
+          Alternate Phone:
+          <a class="text-orange-400 hover:text-orange-300 transition" href="tel:+918921294138">+91 8921294138</a>
+        </p>
+        <p class="inline-flex items-center gap-2">
+          <span class="text-orange-300" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor">
+              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z"/>
+            </svg>
+          </span>
+          Email:
+          <a class="text-orange-400 hover:text-orange-300 transition" href="mailto:anandubs1409@gmail.com">anandubs1409@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var startDate = new Date("2021-04-01T00:00:00");
+      var today = new Date();
+
+      var years = today.getFullYear() - startDate.getFullYear();
+      var months = today.getMonth() - startDate.getMonth();
+      var days = today.getDate() - startDate.getDate();
+
+      if (days < 0) {
+        months -= 1;
+        var previousMonthLastDay = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        days += previousMonthLastDay;
+      }
+
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
+
+      var exactText = years + " years, " + months + " months, " + days + " days in Cloud, DevOps, and Python";
+
+      var experienceLine = document.getElementById("experience-line");
+      var experienceTrainerLine = document.getElementById("experience-trainer-line");
+      var experienceSummary = document.getElementById("experience-summary");
+      var experienceStatValue = document.getElementById("experience-stat-value");
+
+      if (experienceLine) {
+        experienceLine.textContent = exactText;
+      }
+
+      if (experienceTrainerLine) {
+        experienceTrainerLine.textContent = years + " years, " + months + " months, " + days + " days";
+      }
+
+      if (experienceSummary) {
+        experienceSummary.textContent = exactText.charAt(0).toUpperCase() + exactText.slice(1) + ".";
+      }
+
+      if (experienceStatValue) {
+        experienceStatValue.textContent = years + "y " + months + "m";
+        experienceStatValue.title = years + " years, " + months + " months, " + days + " days";
+      }
+
+      var contactForm = document.getElementById("contact-form");
+      var contactStatus = document.getElementById("contact-status");
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          if (contactStatus) {
+            contactStatus.textContent = "Sending message...";
+          }
+
+          var formData = new FormData(contactForm);
+          var encodedData = new URLSearchParams(formData).toString();
+
+          fetch("/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: encodedData
+          })
+            .then(function () {
+              if (contactStatus) {
+                contactStatus.textContent = "Message sent successfully.";
+              }
+              contactForm.reset();
+            })
+            .catch(function () {
+              if (contactStatus) {
+                contactStatus.textContent = "Failed to send message. Please try again.";
+              }
+            });
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>
