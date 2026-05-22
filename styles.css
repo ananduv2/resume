@@ -1,0 +1,623 @@
+﻿html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at 10% 10%, rgba(249, 115, 22, 0.08), transparent 35%),
+                  radial-gradient(circle at 90% 20%, rgba(239, 68, 68, 0.1), transparent 40%),
+                  #000;
+    }
+
+    .glass-card {
+      backdrop-filter: blur(8px);
+      background: rgba(24, 24, 27, 0.7);
+    }
+
+    .arch-wrap {
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+    }
+
+    .arch-board {
+      min-width: 1040px;
+      background: linear-gradient(180deg, rgba(24, 24, 27, 0.92), rgba(9, 9, 11, 0.96));
+      border-radius: 1rem;
+      border: 1px solid rgba(249, 115, 22, 0.22);
+      color: #e4e4e7;
+      padding: 1rem;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .arch-board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.35));
+    }
+
+    .arch-region {
+      border: 1px dashed rgba(251, 146, 60, 0.65);
+      border-radius: 0.6rem;
+      padding: 3.1rem 0.8rem 0.95rem;
+      position: relative;
+      min-height: 780px;
+      background: linear-gradient(180deg, rgba(39, 39, 42, 0.35), rgba(24, 24, 27, 0.65));
+    }
+
+    .arch-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+      width: 86px;
+    }
+
+    .arch-node.internet {
+      width: 96px;
+      z-index: 3;
+    }
+
+    .arch-asg {
+      position: absolute;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%);
+      width: auto;
+      min-width: 180px;
+      height: 142px;
+      border: 1px dashed rgba(251, 146, 60, 0.55);
+      border-radius: 0.9rem;
+      background: linear-gradient(180deg, rgba(251, 146, 60, 0.08), rgba(39, 39, 42, 0.3));
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.55rem;
+      padding: 1.8rem 1.1rem 0.9rem;
+    }
+
+    .arch-consumer-asg {
+      position: absolute;
+      left: 50%;
+      top: 74%;
+      transform: translate(-50%, -50%);
+      width: auto;
+      min-width: 220px;
+      height: 140px;
+      border: 1px dashed rgba(34, 211, 238, 0.45);
+      border-radius: 0.9rem;
+      background: linear-gradient(180deg, rgba(34, 211, 238, 0.07), rgba(39, 39, 42, 0.2));
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1.9rem 1.1rem 0.9rem;
+      overflow: hidden;
+    }
+
+    .arch-consumer-asg-title {
+      position: absolute;
+      top: 0.35rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #67e8f9;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .arch-consumer-nodes {
+      position: relative;
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      padding: 1rem 0 0.55rem;
+    }
+
+    .arch-consumer-nodes::before,
+    .arch-consumer-nodes::after {
+      content: none;
+    }
+
+    .arch-consumer-node {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      flex: 0 0 auto;
+    }
+
+    .arch-consumer-node.replica-slot {
+      width: 0;
+      overflow: hidden;
+      opacity: 0;
+      animation: consumerReplicaSlot 6.4s ease-in-out infinite;
+    }
+
+    .arch-asg-title {
+      position: absolute;
+      top: 0.3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fdba74;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .arch-asg-service-label {
+      margin-top: 0.1rem;
+      font-size: 0.76rem;
+      color: #d4d4d8;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+      white-space: nowrap;
+    }
+
+    .arch-asg-nodes {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+    }
+
+    .arch-asg-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      flex: 0 0 auto;
+    }
+
+    .arch-asg-node.replica-slot {
+      width: 0;
+      overflow: hidden;
+      opacity: 0;
+      animation: producerReplicaSlot 5.2s ease-in-out infinite;
+    }
+
+    .arch-chip.asg-replica {
+      width: 52px;
+      height: 52px;
+      border-color: rgba(251, 146, 60, 0.45);
+      color: rgba(253, 186, 116, 0.8);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.38);
+      opacity: 0;
+      transform: scale(0.85);
+      animation: replicaScale 5.2s ease-in-out infinite;
+    }
+
+    .arch-asg-node.right .arch-chip.asg-replica {
+      animation-delay: 1.4s;
+    }
+
+    .arch-asg-node.right.replica-slot {
+      animation-delay: 1.4s;
+    }
+
+    .arch-chip.asg-core {
+      width: 58px;
+      height: 58px;
+    }
+
+    .arch-chip.consumer-core {
+      width: 58px;
+      height: 58px;
+    }
+
+    .arch-chip.consumer-replica {
+      width: 52px;
+      height: 52px;
+      opacity: 0;
+      transform: scale(0.84);
+      animation: consumerReplicaScale 6.4s ease-in-out infinite;
+    }
+
+    .arch-consumer-replica.replica-a { animation-delay: 0.6s; }
+    .arch-consumer-replica.replica-b { animation-delay: 1.4s; }
+    .arch-consumer-replica.replica-c { animation-delay: 3.2s; }
+    .arch-consumer-replica.replica-d { animation-delay: 4.1s; }
+    .arch-consumer-replica.replica-a .arch-chip { animation-delay: 0.6s; }
+    .arch-consumer-replica.replica-b .arch-chip { animation-delay: 1.4s; }
+    .arch-consumer-replica.replica-c .arch-chip { animation-delay: 3.2s; }
+    .arch-consumer-replica.replica-d .arch-chip { animation-delay: 4.1s; }
+
+    .arch-consumer-gpu-label {
+      position: relative;
+      color: #a5f3fc;
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      text-transform: uppercase;
+      z-index: 4;
+      white-space: nowrap;
+      margin-top: 0.2rem;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    }
+
+    .arch-chip {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 0.32rem;
+      border-radius: 0.85rem;
+      border: 1px solid rgba(251, 146, 60, 0.65);
+      background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.18), rgba(39, 39, 42, 0.96));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fb923c;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(249, 115, 22, 0.1);
+    }
+
+    .arch-chip svg {
+      width: 30px;
+      height: 30px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .arch-chip.svc-ingress,
+    .arch-chip.svc-web {
+      color: #fdba74;
+      border-color: rgba(251, 146, 60, 0.7);
+    }
+
+    .arch-chip.svc-internet {
+      color: #fcd34d;
+      border-color: rgba(250, 204, 21, 0.72);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(250, 204, 21, 0.18);
+    }
+
+    .arch-chip.svc-cache {
+      color: #c4b5fd;
+      border-color: rgba(167, 139, 250, 0.7);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(167, 139, 250, 0.18);
+    }
+
+    .arch-chip.svc-gpu {
+      color: #67e8f9;
+      border-color: rgba(34, 211, 238, 0.7);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(34, 211, 238, 0.16);
+    }
+
+    .arch-chip.svc-db {
+      color: #93c5fd;
+      border-color: rgba(96, 165, 250, 0.7);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(96, 165, 250, 0.18);
+    }
+
+    .arch-chip.svc-fs {
+      color: #86efac;
+      border-color: rgba(74, 222, 128, 0.72);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(74, 222, 128, 0.2);
+    }
+
+    .arch-node-label {
+      margin-top: 0.1rem;
+      font-size: 0.76rem;
+      color: #d4d4d8;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+      white-space: nowrap;
+      position: relative;
+      z-index: 4;
+    }
+
+    .flow-line {
+      position: absolute;
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.16), rgba(245, 158, 11, 0.82), rgba(245, 158, 11, 0.16));
+      border-radius: 999px;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .flow-line::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 28%;
+      background: linear-gradient(90deg, transparent, rgba(255, 237, 213, 0.95), transparent);
+      animation: dataPulse 2.2s linear infinite;
+    }
+
+    .flow-h {
+      height: 2px;
+    }
+
+    .flow-v {
+      width: 2px;
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.16), rgba(245, 158, 11, 0.82), rgba(245, 158, 11, 0.16));
+    }
+
+    .flow-v::after {
+      width: 100%;
+      height: 28%;
+      background: linear-gradient(180deg, transparent, rgba(255, 237, 213, 0.95), transparent);
+      animation: dataPulseVertical 2.2s linear infinite;
+    }
+
+    @keyframes dataPulse {
+      from { transform: translateX(-140%); }
+      to { transform: translateX(360%); }
+    }
+
+    @keyframes dataPulseVertical {
+      from { transform: translateY(-140%); }
+      to { transform: translateY(360%); }
+    }
+
+    @keyframes replicaScale {
+      0%, 18%, 100% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.82);
+      }
+      30%, 70% {
+        opacity: 0.92;
+        transform: translateY(0) scale(1);
+      }
+      82% {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.82);
+      }
+    }
+
+    @keyframes consumerReplicaScale {
+      0%, 14%, 100% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.8);
+      }
+      24%, 72% {
+        opacity: 0.96;
+        transform: translateY(0) scale(1);
+      }
+      84% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.8);
+      }
+    }
+
+    @keyframes producerReplicaSlot {
+      0%, 18%, 100% {
+        width: 0;
+        opacity: 0;
+      }
+      30%, 70% {
+        width: 66px;
+        opacity: 1;
+      }
+      82% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes consumerReplicaSlot {
+      0%, 14%, 100% {
+        width: 0;
+        opacity: 0;
+      }
+      24%, 72% {
+        width: 58px;
+        opacity: 1;
+      }
+      84% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes producerReplicaSlotMobile {
+      0%, 18%, 100% {
+        width: 0;
+        opacity: 0;
+      }
+      30%, 70% {
+        width: 42px;
+        opacity: 1;
+      }
+      82% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes consumerReplicaSlotMobile {
+      0%, 14%, 100% {
+        width: 0;
+        opacity: 0;
+      }
+      24%, 72% {
+        width: 36px;
+        opacity: 1;
+      }
+      84% {
+        width: 0;
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .flow-line {
+        display: block;
+        opacity: 0.82;
+      }
+
+      .arch-wrap {
+        overflow-x: hidden;
+        padding-bottom: 0;
+      }
+
+      .arch-board {
+        min-width: 0;
+        width: 100%;
+        padding: 0.75rem;
+      }
+
+      .arch-region {
+        min-height: 620px;
+        padding: 2.2rem 0.45rem 0.75rem;
+      }
+
+      .arch-node {
+        width: 72px;
+      }
+
+      .arch-node.internet {
+        width: 82px;
+      }
+
+      .arch-chip {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 0.25rem;
+      }
+
+      .arch-chip svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .arch-asg {
+        min-width: 150px;
+        height: 118px;
+        padding: 1.55rem 0.75rem 0.7rem;
+      }
+
+      .arch-consumer-asg {
+        min-width: 176px;
+        height: 116px;
+        padding: 1.55rem 0.75rem 0.7rem;
+      }
+
+      .arch-chip.asg-core,
+      .arch-chip.consumer-core {
+        width: 48px;
+        height: 48px;
+      }
+
+      .arch-asg-node.replica-slot,
+      .arch-consumer-node.replica-slot {
+        display: flex;
+      }
+
+      .arch-asg-node.replica-slot {
+        animation-name: producerReplicaSlotMobile;
+      }
+
+      .arch-consumer-node.replica-slot {
+        animation-name: consumerReplicaSlotMobile;
+      }
+
+      .arch-chip.asg-replica,
+      .arch-chip.consumer-replica {
+        width: 42px;
+        height: 42px;
+      }
+
+      .flow-left-top,
+      .flow-left-down,
+      .flow-left-end,
+      .flow-right-top,
+      .flow-right-down,
+      .flow-right-end {
+        display: block;
+      }
+
+      .flow-main-1,
+      .flow-main-2,
+      .flow-main-3,
+      .flow-main-4,
+      .flow-main-5,
+      .flow-bottom-left,
+      .flow-bottom-right {
+        display: block;
+      }
+
+      .flow-left-top {
+        left: 13% !important;
+        top: 52% !important;
+        width: 37% !important;
+      }
+
+      .flow-left-down {
+        left: 13% !important;
+        top: 52% !important;
+        height: 37% !important;
+      }
+
+      .flow-left-end {
+        left: 13% !important;
+        top: 89% !important;
+        width: 27% !important;
+      }
+
+      .flow-right-top {
+        left: 50% !important;
+        top: 52% !important;
+        width: 37% !important;
+      }
+
+      .flow-right-down {
+        left: 87% !important;
+        top: 52% !important;
+        height: 37% !important;
+      }
+
+      .flow-right-end {
+        left: 60% !important;
+        top: 89% !important;
+        width: 27% !important;
+      }
+
+      .flow-bottom-left,
+      .flow-bottom-right {
+        display: block;
+        top: 89% !important;
+      }
+
+      .flow-bottom-left {
+        left: 42% !important;
+        width: 8% !important;
+      }
+
+      .flow-bottom-right {
+        left: 50% !important;
+        width: 8% !important;
+      }
+
+      .arch-node-label,
+      .arch-asg-service-label,
+      .arch-consumer-gpu-label {
+        font-size: 0.66rem;
+      }
+
+      .arch-asg-title,
+      .arch-consumer-asg-title {
+        font-size: 0.56rem;
+      }
+    }
