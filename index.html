@@ -339,15 +339,88 @@
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20" id="architecture">
-      <!-- <div class="mb-10">
-        <h2 class="text-3xl md:text-4xl font-bold mb-3">Production Architecture Flow</h2>
-        <p class="text-zinc-400 text-lg">Animated request and processing flow across ingress, autoscaling web tiers, data stores, and custom GPU workers.</p>
-      </div> -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20" id="quick-stats">
+      <div class="max-w-3xl mx-auto">
+        <div class="bg-gradient-to-br from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-3xl p-6 sm:p-8 h-full">
+          <h2 class="text-3xl md:text-4xl font-bold mb-8">Quick Stats</h2>
 
-      <div class="arch-wrap">
-        <div class="arch-board">
-          <div class="arch-region">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
+              <div class="text-4xl font-black text-orange-400 mb-2" id="experience-stat-value">--</div>
+              <div class="text-zinc-400">Years Experience</div>
+            </div>
+
+            <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
+              <div class="text-4xl font-black text-orange-400 mb-2">20+</div>
+              <div class="text-zinc-400">Production Services</div>
+            </div>
+
+            <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
+              <div class="text-4xl font-black text-orange-400 mb-2">AWS</div>
+              <div class="text-zinc-400">Cloud Focused</div>
+            </div>
+
+            <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
+              <div class="text-4xl font-black text-orange-400 mb-2">24/7</div>
+              <div class="text-zinc-400">GenAI GPU Operations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20" id="experience">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-8">What I Build</h2>
+
+          <div class="space-y-6">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
+              <h3 class="text-xl font-semibold mb-2 text-orange-400">
+                Cloud Infrastructure
+              </h3>
+              <p class="text-zinc-400">
+                Automate AWS infrastructure, EC2 orchestration, secure delivery pipelines,
+                SSM operations, GPU cluster provisioning, and custom autoscaling for long-running GenAI workloads.
+              </p>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
+              <h3 class="text-xl font-semibold mb-2 text-orange-400">
+                Observability Systems
+              </h3>
+              <p class="text-zinc-400">
+                Build Grafana dashboards, Loki log pipelines,
+                Prometheus exporters, and real-time alerting for production operations.
+              </p>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
+              <h3 class="text-xl font-semibold mb-2 text-orange-400">
+                AI &amp; Media Platforms
+              </h3>
+              <p class="text-zinc-400">
+                Deliver multilingual voice translation, lip-sync systems,
+                AI video workflows, and media generation pipelines.
+              </p>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
+              <h3 class="text-xl font-semibold mb-2 text-orange-400">
+                GenAI Infrastructure
+              </h3>
+              <p class="text-zinc-400">
+                Design GPU clusters and implement custom autoscaling strategies
+                for long-running GenAI inference and media processing workloads.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="embedded-architecture" id="architecture">
+          <div class="arch-wrap">
+            <div class="arch-board">
+              <div class="arch-region">
             <div class="arch-node internet" style="left: 50%; top: 8%;">
               <div class="arch-chip svc-internet" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
@@ -488,12 +561,12 @@
             <div class="flow-line flow-v flow-main-3" style="left: 50%; top: 50%; height: 2.5%;"></div>
             <div class="flow-line flow-v flow-main-4" style="left: 50%; top: 63.5%; height: 1.5%;"></div>
             <div class="flow-line flow-v flow-main-5" style="left: 50%; top: 83%; height: 6%;"></div>
-            <div class="flow-line flow-h flow-left-top" style="left: 30%; top: 52%; width: 20%;"></div>
-            <div class="flow-line flow-v flow-left-down" style="left: 30%; top: 52%; height: 37%;"></div>
-            <div class="flow-line flow-h flow-left-end" style="left: 30%; top: 89%; width: 8%;"></div>
-            <div class="flow-line flow-h flow-right-top" style="left: 50%; top: 52%; width: 20%;"></div>
-            <div class="flow-line flow-v flow-right-down" style="left: 70%; top: 52%; height: 37%;"></div>
-            <div class="flow-line flow-h flow-right-end" style="left: 63%; top: 89%; width: 7.2%;"></div>
+            <div class="flow-line flow-h flow-left-top" style="left: 15%; top: 52%; width: 35%;"></div>
+            <div class="flow-line flow-v flow-left-down" style="left: 15%; top: 52%; height: 37%;"></div>
+            <div class="flow-line flow-h flow-left-end" style="left: 15%; top: 89%; width: 20%;"></div>
+            <div class="flow-line flow-h flow-right-top" style="left: 50%; top: 52%; width: 35%;"></div>
+            <div class="flow-line flow-v flow-right-down" style="left: 85%; top: 52%; height: 37%;"></div>
+            <div class="flow-line flow-h flow-right-end" style="left: 63%; top: 89%; width: 22%;"></div>
             <div class="flow-line flow-h flow-bottom-left" style="left: 42%; top: 89%; width: 8%;"></div>
             <div class="flow-line flow-h flow-bottom-right" style="left: 50%; top: 89%; width: 8%;"></div>
             <!-- <div class="flow-line flow-v" style="left: 40%; top: 86%; height: 3%;"></div> -->
@@ -501,82 +574,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-14 md:py-20" id="experience">
-      <div class="grid lg:grid-cols-2 gap-12">
-        <div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-8">What I Build</h2>
-
-          <div class="space-y-6">
-            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
-              <h3 class="text-xl font-semibold mb-2 text-orange-400">
-                Cloud Infrastructure
-              </h3>
-              <p class="text-zinc-400">
-                Automate AWS infrastructure, EC2 orchestration, secure delivery pipelines,
-                SSM operations, GPU cluster provisioning, and custom autoscaling for long-running GenAI workloads.
-              </p>
-            </div>
-
-            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
-              <h3 class="text-xl font-semibold mb-2 text-orange-400">
-                Observability Systems
-              </h3>
-              <p class="text-zinc-400">
-                Build Grafana dashboards, Loki log pipelines,
-                Prometheus exporters, and real-time alerting for production operations.
-              </p>
-            </div>
-
-            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
-              <h3 class="text-xl font-semibold mb-2 text-orange-400">
-                AI &amp; Media Platforms
-              </h3>
-              <p class="text-zinc-400">
-                Deliver multilingual voice translation, lip-sync systems,
-                AI video workflows, and media generation pipelines.
-              </p>
-            </div>
-
-            <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 sm:p-6">
-              <h3 class="text-xl font-semibold mb-2 text-orange-400">
-                GenAI Infrastructure
-              </h3>
-              <p class="text-zinc-400">
-                Design GPU clusters and implement custom autoscaling strategies
-                for long-running GenAI inference and media processing workloads.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="bg-gradient-to-br from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-3xl p-6 sm:p-8 h-full">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8">Quick Stats</h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
-                <div class="text-4xl font-black text-orange-400 mb-2" id="experience-stat-value">--</div>
-                <div class="text-zinc-400">Years Experience</div>
-              </div>
-
-              <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
-                <div class="text-4xl font-black text-orange-400 mb-2">20+</div>
-                <div class="text-zinc-400">Production Services</div>
-              </div>
-
-              <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
-                <div class="text-4xl font-black text-orange-400 mb-2">AWS</div>
-                <div class="text-zinc-400">Cloud Focused</div>
-              </div>
-
-              <div class="bg-black/40 rounded-2xl p-5 sm:p-6">
-                <div class="text-4xl font-black text-orange-400 mb-2">24/7</div>
-                <div class="text-zinc-400">GenAI GPU Operations</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
