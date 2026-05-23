@@ -70,7 +70,7 @@
       transform: translate(-50%, -50%);
       width: auto;
       min-width: 180px;
-      height: 142px;
+      height: 125px;
       border: 1px dashed rgba(251, 146, 60, 0.55);
       border-radius: 0.9rem;
       background: linear-gradient(180deg, rgba(251, 146, 60, 0.08), rgba(39, 39, 42, 0.3));
@@ -504,13 +504,13 @@
 
       .arch-asg {
         min-width: 150px;
-        height: 118px;
+        height: 110px;
         padding: 1.55rem 0.75rem 0.7rem;
       }
 
       .arch-consumer-asg {
         min-width: 176px;
-        height: 116px;
+        height: 125px;
         padding: 1.55rem 0.75rem 0.7rem;
       }
 
