@@ -63,7 +63,7 @@
     }
 
     .embedded-architecture .arch-region {
-      min-height: 720px;
+      min-height: 845px;
     }
 
     .arch-node {
@@ -375,6 +375,10 @@
       height: 28%;
       background: linear-gradient(180deg, transparent, rgba(255, 237, 213, 0.95), transparent);
       animation: dataPulseVertical 2.2s linear infinite;
+    }
+
+    .flow-bottom-left::after {
+      animation-direction: reverse;
     }
 
     @keyframes dataPulse {
