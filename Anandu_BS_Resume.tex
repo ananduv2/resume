@@ -1,114 +1,271 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[margin=0.8in]{geometry}
-\usepackage[hidelinks]{hyperref}
+\documentclass[letterpaper,11pt]{article}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
 \usepackage{enumitem}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
 
-\setlength{\parindent}{0pt}
-\setlist[itemize]{leftmargin=1.2em, itemsep=0.25em, topsep=0.25em}
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-11pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}\vspace{5pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{document}
 
-{\LARGE \textbf{Anandu B.S.}} \\
-DevOps Engineer - II | Cloud Architect | AWS and DevOps Trainer \\
-Bangalore, Karnataka, India \\
-Phone: +91 8136901971 \quad Alternate: +91 8921294138 \\
-Email: \href{mailto:anandubs1409@gmail.com}{anandubs1409@gmail.com} \\
-LinkedIn: \href{https://www.linkedin.com/in/anandu-bs/}{linkedin.com/in/anandu-bs} \quad GitHub: \href{https://github.com/ananduv2}{github.com/ananduv2}
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
 
-\vspace{0.6em}
-\hrule
-\vspace{0.8em}
+\begin{center}
+    {\Huge \scshape ANANDU B S} \\ \vspace{1pt}
+    101 Vinayaka Enclave, 7th Cross Road, Neeladri Nagar, Electronic City, Bengaluru, Karnataka 560100 \\ \vspace{1pt}
+    \small \raisebox{-0.1\height}\faPhone\ +91 8921294138  ~ \href{mailto:x@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  \underline{anandubs1409@gmail.com}} ~ 
+    \href{https://linkedin.com/in/nithinsv}{\raisebox{-0.2\height}\faLinkedin\ \underline{linkedin.com/in/anandu-bs}}  ~
+    \href{https://github.com/}{\raisebox{-0.2\height}\faGithub\ \underline{github.com/ananduv2}}
+    \vspace{-8pt}
+\end{center}
 
-\textbf{Professional Summary}
+\section{Professional Summary}
+\resumeSubHeadingListStart
+  \resumeSubItem{Bangalore-based DevOps and cloud engineer with 5+ years if experience delivering production infrastructure, observability, backend services and automation for AI media platforms. I work primarily with AWS and GCP, build scalable monitoring systems, run GPU-backed workloads, and deliver resilient deployments with custom autoscaling for long-running GenAI pipelines. I was also the point of contact for implementing SOC 2 compliance across infrastructure and operations workflows.}
+\resumeSubHeadingListEnd
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Master of Computer Application }{Kollam, Kerala}
+      {Tkm College of Engineering, Kollam }{Aug. '19 -- May '21}
+  \resumeSubHeadingListEnd
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Bachelor of Computer Applications }{Kollam, Kerala}
+      {UIT Mukhathala, Kollam}{Jun. '16 -- Apr '19}
+  \resumeSubHeadingListEnd
 
-DevOps and cloud engineer with hands-on experience in production infrastructure, observability, backend services, and automation for AI media platforms. Experienced in AWS and GCP environments, GPU-backed workloads, CI/CD delivery, and custom autoscaling for long-running GenAI pipelines. Conducts AWS and DevOps workshops for students and corporate teams.
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
 
-\vspace{0.8em}
-\textbf{Core Technologies}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3cm}X@{}}
+Languages & Python, Bash/Shell Scripting, SQL, HTML, CSS \\
+Cloud & AWS, Google Cloud Platform (GCP) \\
+Tools & Docker, Kubernetes, Jenkins, Terraform, Linux, Git, Nginx, Prometheus, Grafana \\
+Concepts & CI/CD, DevOps, MLOps, Microservices, Agile \\
+\end{tabularx}
 
-AWS, GCP, Docker, Docker Compose, FastAPI, Flask, Prometheus, Grafana, Loki, Jenkins, HashiCorp Vault, Redis, SonarQube, Selenium, Boto3, ELK Stack, Python
 
-\vspace{0.8em}
-\textbf{Working Experience}
 
-\textbf{Neural Garage Pvt Ltd} \hfill 2022/12 -- Present
 
-\textit{DevOps Engineer - II} \hfill 2025/04 -- Present
 
-\textit{DevOps Engineer} \hfill 2022/12 -- 2025/04
-\begin{itemize}
-  \item Sole DevOps engineer within the company, responsible for overseeing all DevOps operations and managing client interactions.
-  \item Single-handedly oversaw infrastructure requirements and implemented them for development and research teams.
-  \item Accountable for executing comprehensive security checks across cloud-based and on-premises servers.
-  \item Implemented and currently maintain a VPN network connecting servers across AWS, GCP, and on-premises environments.
-  \item Developed and maintained pipelines to automate multiple aspects of deployment.
-  \item Established a comprehensive monitoring and alerting system for all services and security protocols, enabling proactive detection of issues and vulnerabilities.
-  \item Developed customized Grafana metric dashboards for efficient data visualization for both administrative teams and developers.
-  \item Managed a cluster of GPU-enabled servers and spearheaded the design of the overall network architecture.
-  \item Developed and currently maintain custom scripts for provisioning and managing cloud infrastructure.
-  \item Collaborated with the backend development team to design and develop Python FastAPI services for product offerings.
-  \item Developing Python packages to streamline project initialization and deployment while abstracting project architecture complexities.
-\end{itemize}
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {DevOps Engineer II $|$ \emph{Full-time }}{March 2025 -- Present}
+      {NeuralGarage Pvt Ltd}{Bangalore}
+      \resumeItemListStart
+      \resumeItem{Sole owner of the organization's cloud infrastructure, platform operations, security initiatives, and DevOps strategy.}
+      \resumeItem{Designed and managed multi-cloud infrastructure across AWS, GCP, and on-premises environments supporting AI/ML product development and production workloads.}
+      \resumeItem{Led infrastructure architecture, network design, and GPU cluster management for research and production environments.}
+      \resumeItem{Established and maintained organization-wide monitoring, alerting, observability, and security monitoring frameworks.}
+      \resumeItem{Directed SOC 2 compliance initiatives, implementing security controls, access management policies, and operational governance procedures.}
+      \resumeItem{Evaluated cloud providers, infrastructure services, and third-party vendors to optimize scalability, reliability, and operational costs.}
+      \resumeItem{Managed client-facing technical discussions and coordinated outsourced teams responsible for quality assurance and operational processes.}
+      \resumeItem{Collaborated with engineering leadership to define infrastructure roadmaps, deployment standards, and platform reliability objectives.}
+      \resumeItemListEnd
+% --------------
+    \resumeSubheading
+      {DevOps Engineer $|$ \emph{Full-time }}{Dec 2022 -- Mar 2025}
+      {NeuralGarage}{Bangalore}
+      \resumeItemListStart
+\resumeItem{Designed and maintained CI/CD pipelines, automating application deployment, infrastructure provisioning, and release workflows across development, staging, and production environments.}
+\resumeItem{Implemented and managed cloud infrastructure across AWS and GCP environments supporting multiple products and internal services.}
+\resumeItem{Built and maintained secure VPN connectivity between cloud and on-premises environments to support distributed infrastructure operations.}
+\resumeItem{Developed custom automation tools and infrastructure management scripts to streamline provisioning, deployment, monitoring, and operational workflows.}
+\resumeItem{Designed and maintained Grafana dashboards, monitoring systems, and alerting frameworks providing visibility into application and infrastructure health.}
+\resumeItem{Performed infrastructure security assessments, server hardening, access control management, and operational maintenance activities.}
+\resumeItem{Managed GPU-enabled compute environments and supported infrastructure requirements for machine learning and AI workloads.}
+\resumeItem{Collaborated with backend engineering teams in developing FastAPI-based services and internal platform tooling.}
+\resumeItem{Developed reusable Python packages and utilities to simplify project initialization, deployment, and operational processes.}
+\resumeItem{Managed Linux-based production environments and optimized cloud resources across AWS services including EC2, S3, EFS, and networking components.}
+\resumeItemListEnd
+    \resumeSubheading
+      {Software Engineer $|$ \emph{Full-time }}{Sep 2021 -- Dec 2022}
+      {Gemini Solutions Pvt Ltd}{Panchkula}
+      \resumeItemListStart
+        \resumeItem{Developed and maintained complex client-side applications using Angular and React, focusing on performance optimization and dynamic user experiences. }
+        \resumeItem{Worked on API integrations and data visualization to present actionable insights for users in real-time.}
+        \resumeItem{Optimized the frontend performance through lazy loading, code splitting, and minification techniques, improving page load times and overall application responsiveness.}
+        \resumeItem{Collaborated with cross-functional teams, including design and product teams, to translate business requirements into technical solutions.}
+        \resumeItem{Contributed to the development of scalable and maintainable code, following best practices in component design and state management.}
+        \resumeItem{Redesigned the UI of a database migration application within 3 months, improving usability and streamlining the user experience.}
+        \resumeItem{Developed an application for monitoring Azure usage stats, providing real-time insights and analytics on cloud resource consumption}
+        \resumeItem{Owned and completed a major module in a complex project, involving transactions and ensuring consistency and reliability of transactional operations.}
+        \resumeItem{Made a major contribution to revamping the UI from PHP to Angular, enhancing the overall user experience and improving maintainability of the application.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Associate System Engineer$|$ \emph{Full-time }}{Apr 2021 -- Sep 2021}
+      {Teqstories Pvt Ltd}{Bangalore}
+      \resumeItemListStart
+    \resumeItem{Designed and developed software solutions for both internal stakeholders and external clients across multiple business domains.}
+    \resumeItem{Managed application deployment, monitoring, and operational support across cloud-based environments.}
+    \resumeItem{Mentored interns and delivered technical training sessions on software development and industry best practices.}
+    \resumeItem{Collaborated with clients to gather requirements, define project scope, and translate business needs into technical solutions.}
+\resumeItemListEnd
+  \resumeSubHeadingListEnd
+\vspace{-16pt}
 
-\textbf{Gemini Solutions Pvt Ltd} \hfill 2021/09 -- 2022/11
+ \section{Certifications}
+ \resumeSubHeadingListStart
+    \resumeSubheading
+      {AWS Certified Cloud Practitioner }{Dec 2021}
+      {Issued by AWS - Registration ID-\href{https://anandubs-resume.netlify.app/AWS\%20Certified\%20Cloud\%20Practitioner.pdf}{423773593} }{}
+  \resumeSubHeadingListEnd
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {AWS Cloud Technical Essentials}{May 2021}
+      {Issued by Coursera  - \href{https://coursera.org/share/cae4c1950b1749313ee111e4874aae79}{https://coursera.org/share/cae4c1950b1749313ee111e4874aae79}}{}
+  \resumeSubHeadingListEnd
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Programming for Everybody (Getting Started with Python)}{May 2020}
+      {Issued by Coursera - https://coursera.org/share/982a69546fb228fa2817817b24c83175\href{https://coursera.org/share/982a69546fb228fa2817817b24c83175} }{}
+  \resumeSubHeadingListEnd
+   \resumeSubHeadingListStart
+    \resumeSubheading
+      {AWS S3 Basics }{May 2021}
+      {Issued by Coursera - https://coursera.org/share/ec46f202d3ac0d862cf688fdff599a5d\href{https://coursera.org/share/ec46f202d3ac0d862cf688fdff599a5d} }{}
+  \resumeSubHeadingListEnd
+  
+%
 
-\textit{Software Engineer}
-\begin{itemize}
-  \item Resolved batch job errors, debugged application issues, and addressed platform-related glitches.
-  \item Managed and resolved client-reported issues and bugs promptly and effectively.
-  \item Engaged with clients on behalf of project owners.
-  \item Drafted documentation outlining debugging methods and approaches for effective reference and reuse.
-  \item Performed root-cause analysis to identify and resolve blockers.
-\end{itemize}
+\section{Languages}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+    
+     \textbf{English, Malayalam, Tamil}  \\
+     \vspace{2pt}
+       
+    }}
+ \end{itemize}
+ % \vspace{-1pt}
 
-\textbf{Teqstories Solutions Pvt Ltd} \hfill 2021/04 -- 2021/09
+\section{Declaration}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+    
+     \text{I do hereby declare that all the information furnished above is true to the best of my knowledge and belief.}  \\
+     \begin{flushright}
+        \textbf{Anandu B S}
+     
+     \end{flushright}
+     \vspace{2pt}
+       
+    }}
+ \end{itemize}
 
-\textit{Associate System Engineer Trainee}
-\begin{itemize}
-  \item Created software solutions for both internal and external clients.
-  \item Managed application deployment and monitoring across cloud platforms.
-  \item Provided mentorship to interns and conducted corporate training sessions.
-  \item Engaged with clients to gather project requirements.
-\end{itemize}
+ 
 
-\vspace{0.8em}
-\textbf{Selected Projects}
-
-\textbf{VisualDub}
-\begin{itemize}
-  \item AI dubbing platform delivered as SaaS and API offerings.
-  \item Owned end-to-end deployment, CI/CD, and production monitoring automation.
-\end{itemize}
-
-\textbf{Beacon.Io}
-\begin{itemize}
-  \item Unified data and analytics platform for capital market risk workflows.
-  \item Responsible for reliability, pipeline debugging, and production user support.
-\end{itemize}
-
-\textbf{Automation and DevOps Tooling}
-\begin{itemize}
-  \item Built infrastructure automation with AWS SSM, Boto3, Docker Compose, Jenkins pipelines, and internal monitoring tooling.
-\end{itemize}
-
-\vspace{0.8em}
-\textbf{Education}
-
-\textbf{Master of Computer Application} \hfill 2021 \\
-APJ Abdul Kalam Technological University (CGPA: 8.33)
-
-\textbf{Bachelor of Computer Applications} \hfill 2019 \\
-Kerala University (CGPA: 7.28)
-
-\vspace{0.8em}
-\textbf{Certifications}
-\begin{itemize}
-  \item AWS Certified Cloud Practitioner
-  \item AWS Cloud Technical Essentials
-  \item Programming for Everybody (Getting Started with Python)
-  \item AWS S3 Basics
-\end{itemize}
 
 \end{document}
